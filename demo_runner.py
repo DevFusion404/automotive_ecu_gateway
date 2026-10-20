@@ -69,7 +69,7 @@ def run():
         if success and applied and not rollback:
             first_lines = [l for l in refactored.splitlines() if l.strip() and not l.startswith("#include")][:3]
             sample = " | ".join(l.strip() for l in first_lines)
-            print(f"[{idx:02d}/{len(plans)}] PASS: {rel_target:<32} | {refactoring_name:<26} (Conf: {confidence:.3f})")
+            print(f"[{idx:02d}/{len(plans)}] PASS: {rel_target:<32} | {refactoring_name:<26} (Conf: {confidence:.3f}) | Sample: {sample[:35]}...")
         else:
             reason = res.get("safety_report", {}).get("rollback_reason", "Transformation validation check failed")
             print(f"[{idx:02d}/{len(plans)}] FAIL: {rel_target:<32} | {refactoring_name:<26} Reason: {reason}")
